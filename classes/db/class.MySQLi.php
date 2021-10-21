@@ -182,12 +182,11 @@ if (!class_exists('DB_MySQLi')) {
          * @return Boolean
          */
         public function preparedStatement($sqlQuery, $params = array()) {
-
             /**
              * Create a prepared statement 
              * e.g. SELECT District FROM City WHERE Name=? 
              */
-            $stmt = $mysqli->prepare($sqlQuery);
+            $stmt = $this->MySQLiObj->prepare($sqlQuery);
 
             /* bind parameters for markers */
             $keys = '';
@@ -235,13 +234,11 @@ if (!class_exists('DB_MySQLi')) {
                     $modusSQLquery = $getSQLmodus;
                 }
             }
-//
-//            $insertDBlogSQL = "INSERT 
-//                             INTO `DBLog` (SQLs, Date, Name, Modus) 
-//                           VALUES ('" . $this->MySQLiObj->real_escape_string($sqlQuery) . "', 
-//                                    " . time() . ", 
-//                                   '" . $this->MySQLiObj->real_escape_string(session_name()) . "', 
-//                                   '" . $this->MySQLiObj->real_escape_string($modusSQLquery) . "')";
+
+//            $insertDBlogSQL = "INSERT INTO `DBLog` (SQLs, Date, Name, Modus) VALUES ('" . $this->MySQLiObj->real_escape_string($sqlQuery) . "', 
+//                                                " . time() . ", 
+//                                               '" . $this->MySQLiObj->real_escape_string(session_name()) . "', 
+//                                               '" . $this->MySQLiObj->real_escape_string($modusSQLquery) . "')";
 //
 //            $this->MySQLiObj->query($insertDBlogSQL);
         }
@@ -255,12 +252,10 @@ if (!class_exists('DB_MySQLi')) {
 
             $this->lastSQLError = $this->MySQLiObj->error;
 
-//            $insertDBerrorSQL = "INSERT 
-//                               INTO `DBerror` (Errno, Error, State, Time) 
-//                             VALUES ('" . $this->MySQLiObj->real_escape_string($this->MySQLiObj->errno) . "', 
-//                                     '" . $this->MySQLiObj->real_escape_string($this->MySQLiObj->error) . "', 
-//                                     '" . $this->MySQLiObj->real_escape_string($this->MySQLiObj->sqlstate) . "', 
-//                                     '" . $this->MySQLiObj->real_escape_string(time()) . "')";
+//            $insertDBerrorSQL = "INSERT INTO `DBerror` (Errno, Error, State, Time) VALUES ('" . $this->MySQLiObj->real_escape_string($this->MySQLiObj->errno) . "', 
+//                                                 '" . $this->MySQLiObj->real_escape_string($this->MySQLiObj->error) . "', 
+//                                                 '" . $this->MySQLiObj->real_escape_string($this->MySQLiObj->sqlstate) . "', 
+//                                                 '" . $this->MySQLiObj->real_escape_string(time()) . "')";
 //
 //            $this->MySQLiObj->query($insertDBerrorSQL);
         }

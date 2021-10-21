@@ -47,7 +47,6 @@ if (!class_exists('DB_PDO')) {
         }
 
         private function __clone() {
-
             // Prevents the database from being cloned
         }
 
@@ -63,7 +62,7 @@ if (!class_exists('DB_PDO')) {
                 \PDO::MYSQL_ATTR_USE_BUFFERED_QUERY => true, // Collects data and sends them together to relieve the DB
                 \PDO::ATTR_PERSISTENT => true, // Caching for a single user, that speeds up the whole thing
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION // Error exeptions throw
-//            PDO::ATTR_EMULATE_PREPARES => true
+                    //            PDO::ATTR_EMULATE_PREPARES => true
             );
 
             // Try to connect
@@ -101,7 +100,7 @@ if (!class_exists('DB_PDO')) {
                 }
 
                 // Is there an empty result set ?
-                ( $pdoStmt->rowCount() == 0 ) ? $return = array() : $return = $pdoStmt->fetchAll();
+                ($pdoStmt->rowCount() == 0) ? $return = array() : $return = $pdoStmt->fetchAll();
 
                 // Statement close
                 $pdoStmt->closeCursor();
@@ -165,6 +164,30 @@ if (!class_exists('DB_PDO')) {
 
                 return false;
             }
+        }
+
+        /**
+         * 
+         * @return type
+         */
+        public function lastSQLquery() {
+            return $this->lastSQLquery;
+        }
+
+        /**
+         * 
+         * @return type
+         */
+        public function affectedRows() {
+            return $this->lastSQLrows;
+        }
+
+        /**
+         * 
+         * @return type
+         */
+        public function lastSQLerror() {
+            return $this->lastSQLerror;
         }
 
     }
